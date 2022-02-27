@@ -1,11 +1,14 @@
+import { useCallback } from 'react';
+
+import { useReduxSelector } from '../../hooks';
 import * as S from './styles';
 
-type CounterProps = {
-  value: number;
-};
+const Counter = () => {
+  const counter = useReduxSelector(
+    useCallback((state) => state.counter.value, []),
+  );
 
-const Counter = ({ value }: CounterProps) => (
-  <S.Container>{`${value}`.padStart(2, '0')}</S.Container>
-);
+  return <S.Container>{`${counter}`.padStart(2, '0')}</S.Container>;
+};
 
 export default Counter;
